@@ -79,6 +79,20 @@ const getProducts= async() =>
 }
 getProducts();
 
+
+// -- mostrar productos en localStorage---
+let prodEnCarrito;
+if(localStorage.getItem("carrito")==null){
+    prodEnCarrito=[];
+}else{
+    prodEnCarrito=JSON.parse(localStorage.getItem("carrito"));
+    mostrarProdEnJSON();
+}
+
+
+
+
+
 /*--- Mostrar productos ---*/
 const loadProducts=(products)=>{
     for (const prod of products){
@@ -110,17 +124,6 @@ const loadEvents=(products)=>{
 
 }
 
-// -- mostrar productos en localStorage---
-let prodEnCarrito;
-if(localStorage.getItem("carrito")==null){
-    prodEnCarrito=[];
-}else{
-    prodEnCarrito=JSON.parse(localStorage.getItem("carrito"));
-    mostrarProdEnJSON();
-}
-
-
-
 function add_to_cart(prod){
     if (prodInCart(prod)){
         let itemCarrito= new LineaProducto(prod, 1);
@@ -136,8 +139,8 @@ function add_to_cart(prod){
         </div>`;
         cart_list.innerHTML=htmlCarrito;
         saveToJason(prodEnCarrito);
-        actualizarTotal(itemCarrito.prod.price*itemCarrito.cant);
-        btnQuitar(itemCarrito);
+        actualizarTotal();
+        quitarItem(prodEnCarrito);
         Toastify({
             text: "Se agregó un producto al carrito!",
             duration: 3000,
@@ -189,7 +192,6 @@ function saveToJason(listado){
 }
 
 function mostrarProdEnJSON(){
-    let acum=0;
     prodEnCarrito.forEach((itemCarrito) => {
         htmlCarrito+=`                                
         <div class="container-fluid unItem">
@@ -201,16 +203,15 @@ function mostrarProdEnJSON(){
             <a href="#" id="quitar_${itemCarrito.prod.id}" class="btn btn_quitar "><i class="fa-solid fa-trash"></i></a>
         </div>`;
         cart_list.innerHTML=htmlCarrito;
-        acum+=itemCarrito.prod.price*itemCarrito.cant;
-        //deleteID="quitar_"+itemCarrito.prod.id;
-        btnQuitar(itemCarrito);
     });
-    actualizarTotal(acum);
+    quitarItem(prodEnCarrito);
+    actualizarTotal();
 }
 
 
-function btnQuitar(item){
-    let id="quitar_"+item.prod.id;
+function quitarItem(prods){
+    for(const item of prods){
+        let id="quitar_"+item.prod.id;
     let btn_quitar=document.getElementById(id);
     btn_quitar.addEventListener("click", function(){
         const swalWithBootstrapButtons = Swal.mixin({
@@ -222,7 +223,7 @@ function btnQuitar(item){
         })
         swalWithBootstrapButtons.fire({
             // title: 'Desea eliminar este producto de su carrito?',
-            text: 'Desea eliminar este producto de su carrito?',
+            text: 'Desea eliminar una unidad de este producto de su carrito?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Si, quitar del carrito',
@@ -235,52 +236,27 @@ function btnQuitar(item){
                 'El producto fue removido de tu carrito',
                 'success'
                 );
-            quitarItemCarrito(item);
-            actualizarTotal(-item.prod.price*item.cant);
+            item.cant=item.cant-1;
+            actualizarTotal();
+            if (item.cant<1){
+                let i=prods.indexOf(item);
+                prods.splice(i,1);
+                prodEnCarrito=prods;
+            }
+            saveToJason(prods);
+            htmlCarrito=``;
+            cart_list.innerHTML=htmlCarrito;
+            mostrarProdEnJSON();
             }
         });
     }
     );
+    }
 }
 
 function quitarItemCarrito(item){
-    //prodEnCarrito=prodEnCarrito.filter(prodEnCarrito=> prodEnCarrito.prod.id!=item.prod.id);
-    console.log("antes: ",htmlCarrito);
-    htmlCarrito=htmlCarrito.substring(`                                
-    <div class="container-fluid unItem">
-        <img src="${item.prod.img}" alt="" class="imgList">
-        <span class="marcaList">${item.prod.brand}</span>
-        <span class="modeloList">${item.prod.description}</span>
-        <span class="cantList" id="cantList_${item.prod.id}">${item.cant}</span>
-        <span class="precioList">$ ${item.prod.price}</span>
-        <a href="#" id="quitar_${item.prod.id}" class="btn btn_quitar "><i class="fa-solid fa-trash"></i></a>
-    </div>`);
-    console.log("despues: ",htmlCarrito);
-    // cart_list.innerHTML=htmlCarrito;
-    }
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-        title: 'Desea quitar un producto del carrito?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Si, quitarlo!',
-        cancelButtonText: 'No, conservarlo!',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-        swalWithBootstrapButtons.fire(
-            'Removido!',
-            'Se ha quitado un producto del carrito.',
-            'success'
-        )
-        }
-    })
+
+}
 
 function prodInCart(prod){
     if(prodEnCarrito.length!=0){
@@ -303,12 +279,15 @@ function addUnitToCart(prod){
             itemCarrito.cant+=1;
             let cant_tag=document.getElementById("cantList_"+itemCarrito.prod.id);
             cant_tag.innerHTML=itemCarrito.cant;
-            actualizarTotal(itemCarrito.prod.price);
+            actualizarTotal();
         }
     })
 }
 
-function actualizarTotal(monto){
-    total+=monto;
-    total_tag.innerText=total;
+function actualizarTotal(){
+    let tot=0;
+    for(const item of prodEnCarrito){
+        tot+=item.prod.price*item.cant;
+    }
+    total_tag.innerText=tot;
 }
