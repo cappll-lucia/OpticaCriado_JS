@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Optica Criado</title>
+		<link rel="shortcut icon" href="/gallery/favicon.ico" type="image/x-icon" />
+		<!-- googlefonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+			integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+			crossorigin="anonymous"
+		/>
+		<!-- animations -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+		<!-- awesome -->
+		<script src="https://kit.fontawesome.com/f7d3b5a520.js" crossorigin="anonymous"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+			integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- alertas -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.all.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+
+		<!-- css file -->
+		<link rel="stylesheet" href="styles/styles.css" />
+	</head>
+	<body>
+		<header>
+			<div class="container-fluid logo text-center">
+				<a href="../index.html"
+					><img src="/gallery/logotipoOptica.png" alt="" class="logoImg col-md-6 col-lg-6 col-xl-6 col-sm-10 col-12"
+				/></a>
+			</div>
+			<!-- inicio navBar -->
+			<div class="topnav justify-content-center" id="myTopnav">
+				<a href="#tiendaRec">PRODUCTOS</a>
+				<a href="#cartPage">MIS ELEGIDOS <i class="fa-solid fa-cart-shopping"></i></a>
+
+				<a href="javascript:void(0);" style="font-size: 15px" class="icon"></a>
+			</div>
+			<!-- fin navBar -->
+		</header>
+
+		<main>
+			<section class="shop-section shop-section-recetados container-fluid" id="tiendaRec">
+				<div class="shop-section-content">
+					<h1 class="w-100">Comprá desde tu casa!</h1>
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 shop-section-product">
+						<div class="container-fluid col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 justify-content-center">
+							<div class="row" id="shop_section"></div>
+						</div>
+					</div>
+				</div>
+				<div style="height: 150px; overflow: hidden" class="wave">
+					<svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%">
+						<path
+							d="M-32.44,81.42 C149.99,150.00 349.20,-49.98 557.28,155.44 L500.00,150.00 L0.00,150.00 Z"
+							style="stroke: none; fill: #fbfcdb;"
+						></path>
+					</svg>
+				</div>
+			</section>
+
+			<section class="shop-section shop-section-cart container-fluid" id="cartPage">
+				<div class="shop-section-cart">
+					<h1 class="w-100">Tu carrito de compras</h1>
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 shop-section-cart" id="carrito">
+						<div class="container-fluid col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 justify-content-center">
+							<div class="container-fluid headerItems row">
+								<span class="marcaList">Marca</span>
+								<span class="modeloList">Descripcion</span>
+								<span class="cantList">cantidad</span>
+								<span class="precioList">precio unitario</span>
+								<a href="#"> </i></a>
+							</div>
+							<div class="row" id="cart_list">
+								<!-- encabezado lista -->
+							</div>
+						</div>
+
+						<div class="totalDiv">
+							<a href="#" id="btnFin" class="btn btn_finalizar card-btn btn-primary"> Finalizar compra</a>
+							<div class="total">
+								<span> TOTAL: $ </span>
+								<span id="totalAcum">00.00</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<div id="wave2" style="height: 150px; overflow: hidden;" >
+			<svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+				<path d="M-88.88,126.81 C298.81,208.72 331.55,14.31 531.31,164.31 L500.00,0.00 L0.00,0.00 Z" 
+				style="stroke: none; fill: #fbfcdb;"></path>
+			</svg>
+		</div>
+		<footer>
+			<div class="container w-100">
+				<div class="row">
+					<div class="social col-lg-3 col-md-4 col-sm-4">
+						<span>Seguinos!</span> <br />
+						<hr />
+						<div class="container__social">
+							<a href="https://api.whatsapp.com/send?phone=5493416120058" target="_blank" class="social__a"
+								><i class="fa-brands fa-whatsapp" id="wpp"></i
+							></a>
+							<a href="http://www.facebook.com/optica.criado.9" target="_blank" class="social__a"
+								><i class="fa-brands fa-facebook" id="fb"></i
+							></a>
+							<a href="http://instagram.com/opticacriado" target="_blank" class="social__a"
+								><i class="fa-brands fa-instagram" id="ig"></i
+							></a>
+						</div>
+					</div>
+					<div class="menu col-lg-5 col-md-8 col-sm-8">
+						<span class="menu-span">Segí navegando</span> <br />
+						<hr />
+						<li><a href="../index.html">Productos</a></li>
+						<li>
+							<a href="../index.html#cartPage">Mis elegidos <i class="fa-solid fa-cart-shopping"></i></a>
+						</li>
+					</div>
+					<div class="maps col-lg-4 col-md-12 col-sm-12">
+						<span>Visitá nuestro local</span> <br />
+						<hr />
+						<!-- <iframe class="maps__iframe--map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6692.107716796221!2d-60.7790316985703!3d-33.00235550916214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7b287706444db%3A0x4424e1756415092d!2s%C3%93ptica%20Criado!5e0!3m2!1ses-419!2sar!4v1649375481181!5m2!1ses-419!2sar" width="" height="" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+					</div>
+				</div>
+			</div>
+			<span class="copyR"> Lucía Cappellini - <i class="fa-regular fa-copyright"></i> 2022</span>
+		</footer>
+
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+		<script src="tienda.js"></script>
+	</body>
+</html>

@@ -1,0 +1,564 @@
+@import "variables";
+
+
+.novedades_home{
+    // background-image: url(../gallery/background_3160622.jpg);
+    background-color: #a1ff6a;
+    background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2315c5b5' fill-opacity='0.42'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");    // background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    margin-top: 0px;
+    h1{
+        padding: 3rem 0  1rem 0;
+        font-size: 4rem;
+        color:#1a217c;
+        font-weight: 700;
+    }
+    .container .row{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 0;
+        .novedades__home--card{
+            width: 100%;
+            display: block;
+            // margin: 1rem;
+            text-align: left;
+            border:none;
+            border-radius: 10px;
+            box-shadow: rgb(81, 114, 81) 0.5px 0.5px 8px;
+            .card-body{
+                padding: 0;
+                .card-title{
+                    padding: 0;
+                    margin-top: 20px;
+                }
+                .card-text{
+                    padding: 0;
+                    margin-bottom: 0px;
+                    margin: 0;
+                }
+                .card-btn{
+                    padding: 1rem;
+                    font-family: 'Poppins', sans-serif;
+                    color: #1a217c;
+                    font-size: 1rem;
+                    position: absolute;
+                    bottom: 0;
+                    margin: 0 5% 1rem ;
+                    border-radius: 15px;
+                    background-image: url(../gallery/background_3160622.jpg);
+                    border: none;
+                    i{
+                        margin-left: 1rem;
+                        padding: 0;
+                        font-size: 1rem;
+                        color: #1a217c;
+                    }
+                }
+                .card-btn:hover, .card-btn:hover i{
+                    color: #8C1F28;
+                }
+                .card-btn:hover{
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+  /* novedades xs------- */
+@media (max-width: 575px){
+    .novedades_home{
+        h1{
+            padding: 3rem 0  1rem 0;
+            font-size: 2.5rem;
+            color:#1a217c;
+            font-weight: 700;
+        }
+        .container .row{
+        .novedades__home--card{
+            height: 80vh;
+            margin-bottom: 5%;
+            .card-body{
+                .card-btn{
+                    font-size: 1rem;
+                    padding: 0.7rem 1rem;
+
+                }
+            }
+        }
+    }
+}
+}
+@media (max-width: 420px){
+    .novedades_home{
+        h1{
+            padding: 3rem 0  1rem 0;
+            font-size: 2.5rem;
+            color:#1a217c;
+            font-weight: 700;
+        }
+        .container .row{
+        .novedades__home--card{
+            height: 63vh;
+            margin-bottom: 5%;
+        }
+    }
+}
+}
+  /* novedades sm------- */
+@media (min-width: 576px){
+    .container .row{
+        .novedades__home--card{
+            height: 62vh;
+            margin-bottom: 5%;
+        }
+    }
+}
+
+  /* novedades md------- */
+@media (min-width: 768px){
+    .container .row{
+        .novedades__home--card{
+            height: 60vh;
+            margin:0 0.5% 5% 0 ;
+        }
+    }
+}
+
+  /* novedades lg------- */
+@media (min-width: 992px){
+
+    .container .row{
+        .novedades__home--card{
+            height: 60vh;
+        }
+    }
+}
+
+
+// --------------tienda recetados-----------
+
+.shop-section-recetados{
+    // background-image: linear-gradient(-225deg, rgba(167, 190, 241, 0.664)0%, rgba(243, 222, 253, 0.76) 48%, rgba(167, 190, 241, 0.664) 100%);
+    padding: 0;
+    margin: 0;
+    .shop-section-content{
+        padding: 50px;
+        h1{
+            font-weight: 800;
+            display: block;
+            width: 100%;
+            color: $sombra;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .shop-section-marcas{
+            color: $sombra;
+            span{
+            font-size: 35px;
+            font-weight: 600;
+            }
+            li{
+                padding: 5px;
+                font-size: 18px;
+                font-weight: 500;
+                .input--option{
+                    margin-right: 15px;
+                }
+            }
+        }
+        .shop-section-product .container-fluid .row{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            .product--card{
+                @extend .novedades__home--card;
+                margin: 1rem;
+                text-align: left;
+                border-radius: 10px;
+                height: 40vh;
+                box-shadow: rgb(211, 212, 211) 0.5px 0.5px 5px;
+                .card-body{
+                    padding: 0;
+                    color: $sombra;
+                    .card-title{
+                        padding: 0;
+                        margin-top: 1rem;
+                    }
+                    .card-text{
+                        padding: 0;
+                        margin-bottom: 0px;
+                        margin: 0;
+                    }
+                    .card-btn{
+                        padding: 0.7rem 1rem;
+                        font-family: 'Poppins', sans-serif;
+                        color: $sombra;
+                        font-weight: 600;
+                        font-size: 1rem;
+                        position: absolute;
+                        bottom: 0;
+                        margin: 0 0 10px 0;
+                        border-radius: 15px;
+                        background-image: linear-gradient(to bottom, #8af5f5 5%, #7cd4b2 95%);
+                        border: none;
+                        i{
+                            margin-left: 18px;
+                            padding: 0;
+                            font-size: 18px;
+                            color: $sombra;
+                        }
+                    }
+                    .card-btn:hover{
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+        .shop-btn-marcas{
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1999px){
+    .shop-section-recetados{
+        .shop-section-content{
+            .shop-section-marcas{
+                span{
+                font-size: 35px;
+                }
+                li{
+                    font-size: 15px;
+                    .input--option{
+                        margin-right: 10px;
+                    }
+                }
+            }
+            .shop-section-product .container-fluid .row{
+                .product--card{
+                    height: 55vh;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 767px) and (max-width: 991px){
+    .shop-section-recetados{
+        .shop-section-content{
+            .shop-section-marcas{
+                span{
+                font-size: 35px;
+                }
+                li{
+                    font-size: 15px;
+                    .input--option{
+                        margin-right: 5px;
+                    }
+                }
+            }
+            .shop-section-product{
+                .container-fluid .row .product--card  {
+                    height: 60vh;
+                    .card-body{
+                        .card-btn{
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px){
+    .shop-section-recetados{
+        .shop-section-content{
+            .shop-section-marcas{
+                display: none;
+            }
+            .shop-btn-marcas{
+                display: block;
+                .panel-heading a{
+                    color: $sombra ;
+                    text-decoration: none;
+                    font-size: 30px;
+                }
+                .panel-body li{
+                    list-style-type: none;
+                    font-size: 18px ;
+                    padding: 5px;
+                }
+            }
+            .shop-section-product{
+                .container-fluid .row .product--card{
+                    height: 55vh;
+                    .card-body{
+                        .card-btn{
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 575px){
+    .shop-section-recetados{
+        .shop-section-content{
+            padding: 20px;
+            h1{
+                font-size: 40px;
+            }
+            .shop-section-product{
+                .container-fluid .row .product--card{
+                    height: 86vh;
+                    .card-body{
+                        .card-btn{
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//--------------tienda sol-----------
+
+.shop-section-sol{
+    @extend .shop-section-recetados;
+    background-image: linear-gradient(to top, #eea2a2dc 0%rgba(187, 193, 191, 0.747)bf 19%, #57c5e1b6 42%, #b49fda9c 79%, #7ac5d8 100%);
+    .shop-section-content .shop-section-product .container-fluid .row{
+        .product--card{
+            @extend .novedades__home--card;
+            height: 40vh;
+        }
+    }
+}
+
+@media (min-width: 767px) and (max-width: 991px){
+    .shop-section-sol{
+        .shop-section-content .shop-section-product{
+            .container-fluid .row .product--card  {
+                height: 45vh;
+                }
+            }
+        }
+}
+
+@media (max-width: 767px){
+    .shop-section-sol{
+        .shop-section-content .shop-section-product{
+            .container-fluid .row .product--card{
+                height: 48vh;
+                }
+            }
+        }
+}
+
+@media (max-width: 575px){
+    .shop-section-sol{
+        .shop-section-content .shop-section-product{
+            .container-fluid .row .product--card{
+                height: 61vh;
+                }
+            }
+        }
+    }
+
+// tienda fotog ----------
+
+.tienda__Fotog{
+    @extend .novedades_home;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    .container .row .tienda__fotog--card{
+        @extend .novedades__home--card;
+        height: 32rem;
+    }
+}
+
+
+@media (max-width: 575px){
+    .tienda__Fotog{
+        h1{
+            padding: 3rem 0  1rem 0;
+            font-size: 2.5rem;
+            color:#1a217c;
+            font-weight: 700;
+        }
+        .container .row{
+        .tienda__fotog--card{
+            margin-bottom: 5%;
+            .card-body{
+                .card-btn{
+                    font-size: 1rem;
+                    padding: 0.7rem 1rem;
+                }
+            }
+        }
+    }
+}
+}
+@media (max-width: 420px){
+    .tienda__Fotog{
+        h1{
+            padding: 3rem 0  1rem 0;
+            font-size: 2.5rem;
+            color:#1a217c;
+            font-weight: 700;
+        }
+        .container .row{
+            .tienda__fotog--card{
+            margin-bottom: 5%;
+        }
+    }
+}
+}
+
+
+@media (min-width: 576px){
+    .container .row{
+        .tienda__fotog--card{
+            margin-bottom: 5%;
+        }
+    }
+}
+
+@media (min-width: 768px){
+    .tienda__Fotog{
+        .container .row{
+            .tienda__fotog--card{
+            margin:0 0.5% 5% 0 ;
+            }
+        }
+    }
+}
+
+
+.shop-section-content{
+    background-color: #cbc9d34d ;
+}
+
+.wave{
+    padding: 0;
+    margin: 0;
+    background-color: #cbc9d34d ;
+
+}
+
+.shop-section-cart{
+    background-color: #fbfcdb;
+    h1{
+        font-weight: 800;
+        display: block;
+        width: 100%;
+        color: $sombra;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+.unItem{
+    width: 90%;
+    display:flex;
+    // background-color: #b6b8e7;
+    border-bottom: solid #219712 2px;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2rem 0rem 0.3rem 0rem;
+    font-size: 1rem;
+    margin: 0.5rem;
+    span{
+        color: #13153f;
+        font-weight: 500
+    };
+}
+
+.imgList{
+    height: 45px;
+    width: auto;
+}
+
+
+#cart_list{
+    margin-left: 7%;
+}
+
+.btn_quitar{
+    font-size: 1rem;
+}
+
+#wave2{
+    background-color: #c8c9c3;
+    
+}
+
+.headerItems{
+    width: 80%;
+    display:flex;
+    // background-color: #b6b8e7;
+    border-bottom: solid #888888 0.5px;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2rem 5rem 0.3rem 0rem;
+    font-size: 1rem;
+    margin-left: 10%;
+    span{
+        color: #a1a1a1 ;
+        font-weight: 300;
+        margin-right: 4rem;
+    };
+}
+
+
+.btn-buy-fin{
+    padding: 0.7rem 1rem;
+    font-family: "Poppins", sans-serif;
+    color: #13153f;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    bottom: 0;
+    margin: 0 0 10px 0;
+    border-radius: 15px;
+    border: none;
+}
+
+.btn_finalizar{
+    padding: 0.5rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #1a217c;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 20rem;
+    margin: 1.8rem 4rem;
+    background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+    border-radius: 15px;
+    border: none;
+}
+.totalDiv{
+    padding: 2rem 3rem 5rem 3rem;
+    height: max-content;
+}
+
+.total{
+    display: inline-block;
+    position: absolute;
+    // top: 0px;
+    right: 10rem;
+    padding: 1rem;
+    font-size: 1.3rem;
+    width: auto;
+    justify-content: center;
+    background-image: linear-gradient(to top, #12d681 0%, #3ed3a4 100%);
+    span{
+        color: #13153f;
+        font-weight: 800;
+    }
+}
