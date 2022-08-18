@@ -516,41 +516,57 @@
 }
 
 
-.btn-buy-fin{
-    padding: 0.7rem 1rem;
-    font-family: "Poppins", sans-serif;
-    color: #13153f;
-    font-weight: 600;
-    font-size: 1rem;
-    position: relative;
-    bottom: 0;
-    margin: 0 0 10px 0;
-    border-radius: 15px;
-    border: none;
-}
 
 .btn_finalizar{
     padding: 0.5rem 1rem;
     font-family: 'Poppins', sans-serif;
-    color: #1a217c;
-    font-size: 1rem;
-    position: absolute;
-    bottom: 0;
-    right: 20rem;
-    margin: 1.8rem 4rem;
+    color: $sombra;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    margin: 1.8rem 5rem 1.8rem 2rem;
     background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
     border-radius: 15px;
     border: none;
 }
+.btn_finalizar:hover{
+    transform: scale(1.1);
+}
+
+.btn_reiniciar{
+    padding: 0.5rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #495466;
+    font-size: 1rem;
+    position: relative;
+    // right: 20rem;
+    margin: 1.8rem;
+    background-color: #7cd4b205;
+    border: solid #495466 1px;
+    border-radius: 15px;
+}
+
+.btn_reiniciar:hover{
+    color: #fff;
+    background-color:  #717780;
+    border: solid #676e7a 1px;
+}
+
+
+
+
 .totalDiv{
     padding: 2rem 3rem 5rem 3rem;
+    margin-right: 15rem;
     height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap-reverse;
 }
 
 .total{
     display: inline-block;
-    position: absolute;
-    // top: 0px;
     right: 10rem;
     padding: 1rem;
     font-size: 1.3rem;

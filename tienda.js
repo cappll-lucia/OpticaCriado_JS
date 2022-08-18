@@ -59,6 +59,7 @@ let carrito=document.getElementById("carrito");
 let cart_list=document.getElementById("cart_list");
 let total_tag=document.getElementById("totalAcum");
 let btnFinalizar=document.getElementById("btnFin");
+let btnReiniciar=document.getElementById("btnReiniciar");
 let htmlCarrito="";
 let total=0;
 let htmlProd=``;
@@ -121,7 +122,11 @@ const loadEvents=(products)=>{
         let btn=document.getElementById(id);
         btn.addEventListener("click", function(){add_to_cart(prod)});
     }
-
+    btnReiniciar.addEventListener("click", ()=>{
+        prodEnCarrito=[];
+        saveToJason(prodEnCarrito);
+        mostrarProdEnJSON();
+    })
 }
 
 function add_to_cart(prod){
@@ -212,8 +217,8 @@ function mostrarProdEnJSON(){
 function quitarItem(prods){
     for(const item of prods){
         let id="quitar_"+item.prod.id;
-    let btn_quitar=document.getElementById(id);
-    btn_quitar.addEventListener("click", function(){
+        let btn_quitar=document.getElementById(id);
+        btn_quitar.addEventListener("click", function(){
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
             confirmButton: 'btn btn-success',
@@ -224,11 +229,13 @@ function quitarItem(prods){
         swalWithBootstrapButtons.fire({
             // title: 'Desea eliminar este producto de su carrito?',
             text: 'Desea eliminar una unidad de este producto de su carrito?',
-            icon: 'warning',
+            imageUrl: item.prod.img,
+            imageWidth: 200,
+            imageAlt: 'Custom image',
             showCancelButton: true,
             confirmButtonText: 'Si, quitar del carrito',
             cancelButtonText: 'No, cancelar',
-            reverseButtons: true
+            reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
             swalWithBootstrapButtons.fire(
