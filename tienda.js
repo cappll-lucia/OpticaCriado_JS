@@ -1,70 +1,25 @@
 
-/*
-class Producto{
-    constructor(id, marca, modelo, precio, stock, img, categoria ){
-        this.id=id
-        this.marca=marca
-        this.modelo=modelo
-        this.precio=precio
-        this.stock=stock
-        this.img=img
-        this.categ=categoria
-    }
-}
-*/
-class LineaProducto{
+
+class ProductLine{
     constructor(producto, cantidad){
         this.prod=producto;
         this.cant=cantidad;
     }
 }
-/*
-let productos=[]
 
-/*----- carga productos----*/
-/*
-let prod1= new Producto(25120,"Valdez","sqr_black",20000,3,"/gallery/card_recetados.jpg", "prodeojo Recetado");
-productos.push(prod1);
-
-let prod2= new Producto(25121,"Wanama","sqr_blue",18450,5,"/gallery/card_recetados2.jpg", "prodeojo Recetado");
-productos.push(prod2);
-
-let prod3= new Producto(25122,"Valdez","sqr_gold",31000,1,"/gallery/card_recetados3.jpg", "prodeojo Recetado");
-productos.push(prod3);
-
-let prod4= new Producto(25123,"Vulk","triangle_black",13000,2,"/gallery/card_recetados4.jpg", "prodeojo Recetado");
-productos.push(prod4);
-
-let prod5= new Producto(25124,"Ossira","sqr_brown",15000,3,"/gallery/card_recetados5.jpg", "prodeojo Recetado");
-productos.push(prod5);
-
-
-let prod6= new Producto(25125,"RayBan","rb_black",41200,2,"/gallery/card_sol.png", "prodeojo de Sol");
-productos.push(prod6);
-
-let prod7= new Producto(25126,"Rusty","poligon_mirror",20780,3,"/gallery/card_sol2.png", "prodeojo de Sol");
-productos.push(prod7);
-
-let prod8= new Producto(25127,"Vonk","cover_black",19300,1,"/gallery/card_sol3.jpg", "prodeojo de Sol");
-productos.push(prod8);
-
-let prod9= new Producto(25128,"RayBan","circle_gold",50100,3,"/gallery/card_sol4.jpg", "prodeojo de Sol");
-productos.push(prod9);
-
-let prod10= new Producto(25129,"RayBan","circle_brown",32000,2,"/gallery/card_sol5.jpg", "prodeojo de Sol");
-productos.push(prod10);
-*/
 // --inicializaciones---
 let carrito=document.getElementById("carrito");
-let cart_list=document.getElementById("cart_list");
-let total_tag=document.getElementById("totalAcum");
+let cartList=document.getElementById("cart_list");
+let totalTag=document.getElementById("totalAcum");
 let btnFinalizar=document.getElementById("btnFin");
 let btnReiniciar=document.getElementById("btnReiniciar");
 let htmlCarrito="";
 let total=0;
 let htmlProd=``;
 
-// ---obtener productos de json----
+
+
+
 const getProducts= async() =>
 {
     try
@@ -78,20 +33,6 @@ const getProducts= async() =>
         console.log(error);
     }
 }
-getProducts();
-
-
-// -- mostrar productos en localStorage---
-let prodEnCarrito;
-if(localStorage.getItem("carrito")==null){
-    prodEnCarrito=[];
-}else{
-    prodEnCarrito=JSON.parse(localStorage.getItem("carrito"));
-    mostrarProdEnJSON();
-}
-
-
-
 
 
 /*--- Mostrar productos ---*/
@@ -120,7 +61,7 @@ const loadEvents=(products)=>{
     for(const prod of products){
         let id=prod.id;
         let btn=document.getElementById(id);
-        btn.addEventListener("click", function(){add_to_cart(prod)});
+        btn.addEventListener("click", function(){addToCart(prod)});
     }
     btnReiniciar.addEventListener("click", ()=>{
         prodEnCarrito=[];
@@ -129,9 +70,9 @@ const loadEvents=(products)=>{
     })
 }
 
-function add_to_cart(prod){
-    if (prodInCart(prod)){
-        let itemCarrito= new LineaProducto(prod, 1);
+function addToCart(prod){
+    if (prodAlreadyInCart(prod)){
+        let itemCarrito= new ProductLine(prod, 1);
         prodEnCarrito.push(itemCarrito);
         htmlCarrito+=`                                
         <div class="container-fluid unItem">
@@ -142,10 +83,10 @@ function add_to_cart(prod){
             <span class="precioList">$ ${itemCarrito.prod.price}</span>
             <a href="#" id="quitar_${itemCarrito.prod.id}" class="btn btn_quitar "><i class="fa-solid fa-trash"></i></a>
         </div>`;
-        cart_list.innerHTML=htmlCarrito;
+        cartList.innerHTML=htmlCarrito;
         saveToJason(prodEnCarrito);
         actualizarTotal();
-        quitarItem(prodEnCarrito);
+        btnQuitarItem(prodEnCarrito);
         Toastify({
             text: "Se agregó un producto al carrito!",
             duration: 3000,
@@ -207,14 +148,14 @@ function mostrarProdEnJSON(){
             <span class="precioList">$ ${itemCarrito.prod.price}</span>
             <a href="#" id="quitar_${itemCarrito.prod.id}" class="btn btn_quitar "><i class="fa-solid fa-trash"></i></a>
         </div>`;
-        cart_list.innerHTML=htmlCarrito;
+        cartList.innerHTML=htmlCarrito;
     });
-    quitarItem(prodEnCarrito);
+    btnQuitarItem(prodEnCarrito);
     actualizarTotal();
 }
 
 
-function quitarItem(prods){
+function btnQuitarItem(prods){
     for(const item of prods){
         let id="quitar_"+item.prod.id;
         let btn_quitar=document.getElementById(id);
@@ -252,7 +193,7 @@ function quitarItem(prods){
             }
             saveToJason(prods);
             htmlCarrito=``;
-            cart_list.innerHTML=htmlCarrito;
+            cartList.innerHTML=htmlCarrito;
             mostrarProdEnJSON();
             }
         });
@@ -261,11 +202,7 @@ function quitarItem(prods){
     }
 }
 
-function quitarItemCarrito(item){
-
-}
-
-function prodInCart(prod){
+function prodAlreadyInCart(prod){
     if(prodEnCarrito.length!=0){
         let found=prodEnCarrito.filter(prodEnCarrito=> prodEnCarrito.prod.id==prod.id);
         if(found.length!=0){
@@ -287,6 +224,7 @@ function addUnitToCart(prod){
             let cant_tag=document.getElementById("cantList_"+itemCarrito.prod.id);
             cant_tag.innerHTML=itemCarrito.cant;
             actualizarTotal();
+            
         }
     })
 }
@@ -296,5 +234,22 @@ function actualizarTotal(){
     for(const item of prodEnCarrito){
         tot+=item.prod.price*item.cant;
     }
-    total_tag.innerText=tot;
+    totalTag.innerText=tot;
 }
+
+
+
+
+//-------- Principal algorithm -------------
+
+    // ---obtener productos de json----
+    getProducts();
+
+    // -- mostrar productos en localStorage---
+    let prodEnCarrito;
+    if(localStorage.getItem("carrito")==null){
+        prodEnCarrito=[];
+    }else{
+        prodEnCarrito=JSON.parse(localStorage.getItem("carrito"));
+        mostrarProdEnJSON();
+    }
