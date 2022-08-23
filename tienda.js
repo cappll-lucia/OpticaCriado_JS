@@ -11,7 +11,7 @@ class ProductLine{
 let carrito=document.getElementById("carrito");
 let cartList=document.getElementById("cart_list");
 let totalTag=document.getElementById("totalAcum");
-let btnFinalizar=document.getElementById("btnFin");
+let btnFinalize=document.getElementById("btnFin");
 let btnRestart=document.getElementById("btnReiniciar");
 let htmlCarrito="";
 let total=0;
@@ -40,7 +40,7 @@ const loadProducts=(products)=>{
     for (const prod of products){
         htmlProd+=
         `
-        <div class="card product--card col-xl-2 col-lg-4 col-md-5 col-sm-4 col-10" style="width:400px">
+        <div class="card product--card col-xl-2 col-lg-4 col-md-5 col-sm-5 col-10" style="width:400px">
         <img class="card-img-bottom" src="${prod.img}" alt="Card image" style="width:100%">
         <div class="card-body">
             <h5 class="card-title">$ ${prod.price}</h5>
@@ -63,6 +63,7 @@ const loadEvents=(products)=>{
         let btn=document.getElementById(id);
         btn.addEventListener("click", function(){addToCart(prod)});
     }
+
     btnRestart.addEventListener("click", ()=>{
         console.log(prodInCart);
         if(prodInCart.length!=0){
@@ -86,7 +87,9 @@ const loadEvents=(products)=>{
         else{
             Swal.fire('','Aún no hay productos en su carrito', 'info')
         }
-    })
+    });
+
+
 }
 
 function addToCart(prod){
@@ -282,7 +285,10 @@ const notifyNoStock=()=>{
 }
 
 
-//-------- Principal algorithm -------------
+
+
+
+//-------- onLoad -------------
 
     // ---obtener productos de json----
     getProducts();
