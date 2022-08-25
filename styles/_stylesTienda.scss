@@ -140,7 +140,7 @@
 
 // --------------tienda recetados-----------
 
-.shop-section-recetados{
+.shop-section{
     // background-image: linear-gradient(-225deg, rgba(167, 190, 241, 0.664)0%, rgba(243, 222, 253, 0.76) 48%, rgba(167, 190, 241, 0.664) 100%);
     padding: 0;
     margin: 0;
@@ -224,7 +224,7 @@
 }
 
 @media (min-width: 1200px) and (max-width: 1999px){
-    .shop-section-recetados{
+    .shop-section{
         .shop-section-content{
             .shop-section-marcas{
                 span{
@@ -246,7 +246,7 @@
     }
 }
 @media (min-width: 992px) and (max-width: 1199px){
-    .shop-section-recetados{
+    .shop-section{
         .shop-section-content{
             .shop-section-marcas{
                 span{
@@ -269,7 +269,7 @@
 }
 
 @media (min-width: 767px) and (max-width: 991px){
-    .shop-section-recetados{
+    .shop-section{
         .shop-section-content{
             .shop-section-marcas{
                 span{
@@ -297,7 +297,7 @@
 }
 
 @media (max-width: 767px){
-    .shop-section-recetados{
+    .shop-section{
         .shop-section-content{
             .shop-section-marcas{
                 display: none;
@@ -330,7 +330,7 @@
 }
 
 @media (max-width: 575px){
-    .shop-section-recetados{
+    .shop-section{
         .shop-section-content{
             padding: 20px;
             h1{

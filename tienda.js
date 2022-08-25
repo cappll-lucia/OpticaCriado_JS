@@ -1,5 +1,12 @@
+//navBar
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    x.className = "topnav";
+    x.className += " responsive";
+}
 
 
+//tienda
 class ProductLine{
     constructor(producto, cantidad){
         this.prod=producto;
