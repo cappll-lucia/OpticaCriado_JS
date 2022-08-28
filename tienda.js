@@ -97,31 +97,29 @@ const loadEvents=(products)=>{
 
     btnFinalize.addEventListener("click", ()=>{
         if(prodInCart.length!=0){
-            prodInCart.forEach((itemCart)=>{
-                console.log("stock antes: ", itemCart.prod.stock);
-                itemCart.prod.stock=itemCart.prod.stock-itemCart.cant;
-                console.log("stock despues: ", itemCart.prod.stock);
-                // updateDataProds();
-                Swal.fire({
-                    title: 'Finalizar compra!',
-                    text:'Completá este campo con tu correo electrónico y recibirás información para relizar el pago',
-                    input: 'email',
-                    inputAttributes: {
-                        autocapitalize: 'off'
-                    },
-                    showCancelButton: true,
-                    confirmButtonText: 'Enviar',
-                    cancelButtonText: 'Cancelar',
-                    showLoaderOnConfirm: true
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                        text: `Revisá tu casilla de mail`,
-                        icon: 'success'
-                        })
-                    }
+            Swal.fire({
+                title: 'Finalizar compra!',
+                text:'Completá este campo con tu correo electrónico y recibirás información para relizar el pago',
+                input: 'email',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Enviar',
+                cancelButtonText: 'Cancelar',
+                showLoaderOnConfirm: true
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    prodInCart.forEach((itemCart)=>{
+                        itemCart.prod.stock=itemCart.prod.stock-itemCart.cant;
                     })
-            })
+                    updateDataProds();
+                    Swal.fire({
+                    text: `Revisá tu casilla de mail`,
+                    icon: 'success'
+                    })
+                }
+                })
         }
         else{
             Swal.fire('','Aún no hay productos para comprar en su carrito', 'info')
@@ -322,6 +320,9 @@ const notifyNoStock=()=>{
     })
 }
 
+function updateDataProds(){
+
+}
 
 
 
