@@ -72,7 +72,6 @@ const loadEvents=(products)=>{
     }
 
     btnRestart.addEventListener("click", ()=>{
-        console.log(prodInCart);
         if(prodInCart.length!=0){
             Swal.fire({
                 title: 'Vaciar carrito',
@@ -96,22 +95,54 @@ const loadEvents=(products)=>{
         }
     });
 
+    btnFinalize.addEventListener("click", ()=>{
+        if(prodInCart.length!=0){
+            prodInCart.forEach((itemCart)=>{
+                console.log("stock antes: ", itemCart.prod.stock);
+                itemCart.prod.stock=itemCart.prod.stock-itemCart.cant;
+                console.log("stock despues: ", itemCart.prod.stock);
+                // updateDataProds();
+                Swal.fire({
+                    title: 'Finalizar compra!',
+                    text:'Completá este campo con tu correo electrónico y recibirás información para relizar el pago',
+                    input: 'email',
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Enviar',
+                    cancelButtonText: 'Cancelar',
+                    showLoaderOnConfirm: true
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                        text: `Revisá tu casilla de mail`,
+                        icon: 'success'
+                        })
+                    }
+                    })
+            })
+        }
+        else{
+            Swal.fire('','Aún no hay productos para comprar en su carrito', 'info')
+        }
+    })
 
 }
 
 function addToCart(prod){
     if (prodAlreadyInCart(prod)){
         if(prod.stock>0){
-            let itemCarrito= new ProductLine(prod, 1);
-            prodInCart.push(itemCarrito);
+            let itemCart= new ProductLine(prod, 1);
+            prodInCart.push(itemCart);
             htmlCarrito+=`                                
             <div class="container-fluid unItem">
-                <img src="${itemCarrito.prod.img}" alt="" class="imgList">
-                <span class="marcaList">${itemCarrito.prod.brand}</span>
-                <span class="modeloList">${itemCarrito.prod.description}</span>
-                <span class="cantList" id="cantList_${itemCarrito.prod.id}">${itemCarrito.cant}</span>
-                <span class="precioList">$ ${itemCarrito.prod.price}</span>
-                <a href="#" id="quitar_${itemCarrito.prod.id}" class="btn btn_quitar "><i class="fa-solid fa-trash"></i></a>
+                <img src="${itemCart.prod.img}" alt="" class="imgList">
+                <span class="marcaList">${itemCart.prod.brand}</span>
+                <span class="modeloList">${itemCart.prod.description}</span>
+                <span class="cantList" id="cantList_${itemCart.prod.id}">${itemCart.cant}</span>
+                <span class="precioList">$ ${itemCart.prod.price}</span>
+                <a href="#" id="quitar_${itemCart.prod.id}" class="btn btn_quitar "><i class="fa-solid fa-trash"></i></a>
             </div>`;
             cartList.innerHTML=htmlCarrito;
             saveToJason(prodInCart);
@@ -173,15 +204,15 @@ function saveToJason(listado){
 }
 
 function mostrarProdEnJSON(){
-    prodInCart.forEach((itemCarrito) => {
+    prodInCart.forEach((itemCart) => {
         htmlCarrito+=`                                
         <div class="container-fluid unItem">
-            <img src="${itemCarrito.prod.img}" alt="" class="imgList">
-            <span class="marcaList">${itemCarrito.prod.brand}</span>
-            <span class="modeloList">${itemCarrito.prod.description}</span>
-            <span class="cantList" id="cantList_${itemCarrito.prod.id}">${itemCarrito.cant}</span>
-            <span class="precioList">$ ${itemCarrito.prod.price}</span>
-            <a href="#" id="quitar_${itemCarrito.prod.id}" class="btn btn_quitar "><i class="fa-solid fa-trash"></i></a>
+            <img src="${itemCart.prod.img}" alt="" class="imgList">
+            <span class="marcaList">${itemCart.prod.brand}</span>
+            <span class="modeloList">${itemCart.prod.description}</span>
+            <span class="cantList" id="cantList_${itemCart.prod.id}">${itemCart.cant}</span>
+            <span class="precioList">$ ${itemCart.prod.price}</span>
+            <a href="#" id="quitar_${itemCart.prod.id}" class="btn btn_quitar "><i class="fa-solid fa-trash"></i></a>
         </div>`;
         cartList.innerHTML=htmlCarrito;
     });
@@ -254,12 +285,12 @@ function prodAlreadyInCart(prod){
 
 function addUnitToCart(prod){
     let rta;
-    prodInCart.forEach((itemCarrito)=>{
-        if(itemCarrito.prod.id==prod.id){
-            if(itemCarrito.cant<prod.stock){
-                itemCarrito.cant+=1;
-                let cant_tag=document.getElementById("cantList_"+itemCarrito.prod.id);
-                cant_tag.innerHTML=itemCarrito.cant;
+    prodInCart.forEach((itemCart)=>{
+        if(itemCart.prod.id==prod.id){
+            if(itemCart.cant<prod.stock){
+                itemCart.cant+=1;
+                let cant_tag=document.getElementById("cantList_"+itemCart.prod.id);
+                cant_tag.innerHTML=itemCart.cant;
                 updateTotal();
                 rta=true;
             } else{
