@@ -111,9 +111,9 @@ const loadEvents=(products)=>{
                 }).then((result) => {
                 if (result.isConfirmed) {
                     prodInCart.forEach((itemCart)=>{
+                        //El stock de los productos se actualiza una vez finalizada la compra
                         itemCart.prod.stock=itemCart.prod.stock-itemCart.cant;
                     })
-                    updateDataProds();
                     Swal.fire({
                     text: `Revisá tu casilla de mail`,
                     icon: 'success'
@@ -318,10 +318,6 @@ const notifyNoStock=()=>{
             popup: 'animate__animated animate__fadeOutUp'
         }
     })
-}
-
-function updateDataProds(){
-
 }
 
 
